@@ -1,34 +1,126 @@
 <div class="item">
-    <div>URL Avatar</div>
+    <div>Categoria</div>
     <div>
-        <input type="url" name="avatar_url" placeholder="http://" value="{{instructor.avatar_url}}">
+        <select name="category_id">
+            {% for category in categories %}
+                <option value="{{category.id}}" {% if product.category_id == category.id %} selected="selected" {% endif %}>
+                {{category.name}}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+</div>
+
+<div class="item">
+    <div>Name</div>
+    <div>
+        <input 
+        type="text" 
+        name="text" 
+        placeholder="Digite o titulo do anúncio" 
+        value="{{product.name}}"
+        >
+    </div>
+</div>
+
+<div class="item">
+    <div>Descrição</div>
+    <div>
+        <textarea name="description">{{product.description}}</textarea>
+    </div>
+</div>
+
+{# Campo de foto #}
+
+<div class="item">
+    <div>Valor</div>
+    <div>
+        <input 
+        type="text" 
+        name="price" 
+        placeholder="Digite o preço do produto" 
+        value="{{product.price}}"
+        {# Faremos uma máscara de dinheiro / Reais #}
+        >
+    </div>
+    {% if product.old_price %}
+        <input type="hidden" name="old_price" value="product.old_price">
+    {% endif %}
+</div>
+
+<div class="item">
+    <div>Quantidade</div>
+    <div>
+        <input 
+        type="number" 
+        name="quantity" 
+        placeholder="Estoque disponivel:" 
+        value="{{product.quantity}}"
+        >
+    </div>
+</div>
+
+{% if product.status %} //Se vier o status é pq tem no banco de dados, senão vier e pq não tem, regra de negocio = no primeiro cadastro não exibir se tem ou não, deixa como tem e pronto
+<div class="item">
+    <div>Disponivel</div>
+    <div>
+        <span>
+            <input type="radio" name="status" value="1" {% if product.status == "1" %} checked="checked" {% endif %}>
+            Sim
+        </span>
+        <span>
+            <input type="radio" name="status" value="0" {% if product.status == "0" %} checked="checked" {% endif %}>
+            Não
+        </span>
+    </div>
+</div>
+{% endif %}
+
+{# <div class="item">
+    <div>Nome</div>
+    <div>
+        <input type="text" name="name" value="{{member.name}}">
     </div>
 </div>
 <div class="item">
-    <div>Instrutor</div>
+    <div>Email</div>
     <div>
-        <input type="text" name="name" placeholder="Nome do instrutor" value="{{instructor.name}}">
+        <input type="email" name="email" value="{{member.email}}">
     </div>
 </div>
 <div class="item">
     <div>Data de nascimento</div>
     <div>
-        <input type="date" name="birth" value="{{instructor.birth}}">
+        <input type="date" name="birth" value="{{member.birth}}">
     </div>
 </div>
 <div class="item">
-    <div>Sexo</div>
+    <div>Tipo Sanguíneo</div>
     <div>
-        <span><input type="radio" name="gender" value="M" {% if instructor.gender == "M" %} checked="checked" {% endif %}>
-            Masculino</span>
-        <span><input type="radio" name="gender" value="F" {% if instructor.gender == "F" %} checked="checked" {% endif %}>
-            Feminino</span>
+        <select name="blood">
+            <option value="disabled">Selecione um tipo</option>
+            <option value="A1" {% if member.blood == "A1" %} selected="selected" {% endif %}>A+</option>
+            <option value="A0" {% if member.blood == "A0" %} selected="selected" {% endif %}>A-</option>
+            <option value="B1" {% if member.blood == "B1" %} selected="selected" {% endif %}>B+</option>
+            <option value="B0" {% if member.blood == "B0" %} selected="selected" {% endif %}>B-</option>
+            <option value="AB1" {% if member.blood == "AB1" %} selected="selected" {% endif %}>AB+</option>
+            <option value="AB0" {% if member.blood == "AB0" %} selected="selected" {% endif %}>AB-</option>
+            <option value="O1" {% if member.blood == "O1" %} selected="selected" {% endif %}>O+</option>
+            <option value="O0" {% if member.blood == "O0" %} selected="selected" {% endif %}>O-</option>
+        </select>
     </div>
 </div>
 <div class="item">
-    <div>Área de atuação</div>
+    <div>Peso (kg)</div>
     <div>
-        <input type="text" name="services" placeholder="separe os serviços prestados por vírgula" value="{{instructor.services}}">
+        <input type="number" name="weight" value="{{member.weight}}">
     </div>
 </div>
-<button type="submit">Salvar</button>
+<div class="item">
+    <div>Altura (cm)</div>
+    <div>
+        <input type="number" name="height" value="{{member.height}}">
+    </div>
+</div> #}
+
+
