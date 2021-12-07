@@ -24,5 +24,12 @@ module.exports = {
         }
 
         return bloodType[blood]
+    },
+    formatPrice(price) {
+        return new Intl.NumberFormat('pt-BR',
+      {
+        style: 'currency',
+        currency: 'BRL'
+      }).format(price / 100);//18023 / 100 -> 180.23
     }
 }
