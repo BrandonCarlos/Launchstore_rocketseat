@@ -12,11 +12,11 @@
 </div>
 
 <div class="item">
-    <div>Name</div>
+    <div>Titulo</div>
     <div>
         <input 
         type="text" 
-        name="text" 
+        name="name" 
         placeholder="Digite o titulo do anúncio" 
         value="{{product.name}}"
         >
@@ -40,7 +40,7 @@
         name="price" 
         placeholder="Digite o preço do produto" 
         value="{{product.price}}"
-        {# Faremos uma máscara de dinheiro / Reais #}
+        onkeydown="Mask.apply(this, 'formatBRL')"
         >
     </div>
     {% if product.old_price %}
@@ -60,7 +60,7 @@
     </div>
 </div>
 
-{% if product.status %} //Se vier o status é pq tem no banco de dados, senão vier e pq não tem, regra de negocio = no primeiro cadastro não exibir se tem ou não, deixa como tem e pronto
+{% if (product.status == '1') or (product.status == '0') %} //Se vier o status é pq tem no banco de dados, senão vier e pq não tem, regra de negocio = no primeiro cadastro não exibir se tem ou não, deixa como tem e pronto
 <div class="item">
     <div>Disponivel</div>
     <div>
